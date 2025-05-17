@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Clima actual en Maullín</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Clima actual en Maullín, Chile</h1>
+
+    {% if registro %}
+    <table>
+        <tr><th>Temperatura (°C)</th><td>{{ registro.temperatura_celsius }}</td></tr>
+        <tr><th>Velocidad del viento (km/h)</th><td>{{ registro.velocidad_viento_kmh }}</td></tr>
+        <tr><th>Dirección del viento (°)</th><td>{{ registro.winddirection }}</td></tr>
+        <tr><th>Estado del clima</th><td>{{ registro.descripcion_clima }}</td></tr>
+        <tr><th>Hora del dato</th><td>{{ registro.time_utc }}</td></tr>
+        <tr><th>Fecha de extracción</th><td>{{ registro.extracted_at }}</td></tr>
+    </table>
+    {% else %}
+    <p>No hay datos para mostrar.</p>
+    {% endif %}
+
+    <form method="post">
+        <button type="submit">Actualizar clima y guardar</button>
+    </form>
+</body>
+</html>

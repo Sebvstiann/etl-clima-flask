@@ -34,3 +34,23 @@ def obtener_ultimo_registro():
     result = session.execute(sql).fetchone()
     session.close()
     return result
+
+from sqlalchemy import Column, Integer, Float, String, Table, MetaData, TIMESTAMP
+
+metadata = MetaData()
+
+clima_table = Table(
+    "clima",
+    metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("temperatura_celsius", Float),
+    Column("velocidad_viento_kmh", Float),
+    Column("winddirection", Integer),
+    Column("weathercode", Integer),
+    Column("descripcion_clima", String(50)),
+    Column("time_utc", TIMESTAMP),
+    Column("extracted_at", TIMESTAMP),
+)
+
+
+metadata.create_all(engine)

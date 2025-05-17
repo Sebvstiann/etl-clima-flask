@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from config import db_config
 
-# Crear la conexión usando PostgreSQL y psycopg2
+# Crear motor de conexión PostgreSQL usando SQLAlchemy
 engine = create_engine(
     f"postgresql+psycopg2://{db_config['usuario']}:{db_config['password']}@{db_config['host']}:{db_config['puerto']}/{db_config['base_datos']}"
 )
@@ -15,7 +15,6 @@ def guardar_datos_postgres(data):
         (temperatura_celsius, velocidad_viento_kmh, winddirection, weathercode, descripcion_clima, time_utc, extracted_at)
         VALUES (:temp, :vel_viento, :dir_viento, :weathercode, :descripcion, :time_utc, :extracted_at)
     """)
-
     params = {
         "temp": data.get("temperature"),
         "vel_viento": data.get("windspeed"),

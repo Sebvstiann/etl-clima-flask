@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from etl import extraer_datos_api
-from db import guardar_datos_postgres, obtener_ultimo_registro
+from db import guardar_datos_postgres, obtener_ultimo_registro, obtener_todos_los_registros 
 
 app = Flask(__name__)
 
@@ -16,3 +16,10 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+@app.route("/historial")
+def historial():
+    registros = obtener_todos_los_registros()
+    return render_template("historial.html", registros=registros)
+

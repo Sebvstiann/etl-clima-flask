@@ -35,6 +35,14 @@ def obtener_ultimo_registro():
     session.close()
     return result
 
+def obtener_todos_los_registros():
+    session = Session()
+    sql = text("SELECT * FROM clima ORDER BY id DESC")
+    result = session.execute(sql).fetchall()
+    session.close()
+    return result
+
+
 from sqlalchemy import Column, Integer, Float, String, Table, MetaData, TIMESTAMP
 
 metadata = MetaData()

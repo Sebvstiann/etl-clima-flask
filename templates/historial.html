@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial del clima</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Historial de registros del clima</h1>
+    <a href="{{ url_for('index') }}">← Volver al inicio</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Temperatura (°C)</th>
+                <th>Viento (km/h)</th>
+                <th>Dirección viento</th>
+                <th>WeatherCode</th>
+                <th>Descripción</th>
+                <th>Hora UTC</th>
+                <th>Extraído el</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in registros %}
+            <tr>
+                <td>{{ r.id }}</td>
+                <td>{{ r.temperatura_celsius }}</td>
+                <td>{{ r.velocidad_viento_kmh }}</td>
+                <td>{{ r.winddirection }}</td>
+                <td>{{ r.weathercode }}</td>
+                <td>{{ r.descripcion_clima }}</td>
+                <td>{{ r.time_utc }}</td>
+                <td>{{ r.extracted_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
